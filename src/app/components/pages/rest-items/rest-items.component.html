@@ -1,0 +1,56 @@
+<div class="container list-items" style="background-color: white; padding: 0px;
+">
+    <section class="">
+        <div class="card mainCard">
+            <div class="card-header">
+                <h3 class="card-title d-flex justify-content-center">Products</h3>
+
+                <div class="card-tools d-flex justify-content-between">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div *ngIf="isLoading; else showProducts" class="spinner">
+                    <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <ng-template #showProducts>
+                    <div class="row">
+                        <div class="col-sm-3" *ngFor="let p of products; let i=index;">
+                            <div class="card cardItem">
+                                <img class="card-img-top" src="{{ p.image }}" alt="{{ p.name }}">
+                                <div class="card-body bodyCard">
+                                    <h4 class="card-title">{{ p.name }}</h4>
+                                    <p class="card-text">{{ p.price }}$</p>
+                                    <button (click)="orderNow(p)" class="btnAddToCart">Order Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <hr>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination class="pages" [collectionSize]="collectionSize" [(page)]="page"
+                        [pageSize]="pageSize" (pageChange)="refreshProducts()">
+                    </ngb-pagination>
+                    <select class="form-select decorated" style="width: auto" [(ngModel)]="pageSize"
+                        (ngModelChange)="refreshProducts()">
+                        <option [ngValue]="16">16 items per page</option>
+                        <option [ngValue]="20">20 items per page</option>
+                        <option [ngValue]="50">50 items per page</option>
+                        <option [ngValue]="100">100 items per page</option>
+                        <option [ngValue]="150">150 items per page</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

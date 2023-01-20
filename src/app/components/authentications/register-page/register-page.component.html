@@ -1,0 +1,43 @@
+<div class="lo1">
+    <div class="lo2">
+        <div class="logo">
+            <img src="../../../../assets/loginLogo.png" width="350" height="350">
+        </div>
+        <div class="content">
+            <div class="container mt-5">
+                <h2 class="text-center text-light loginTitle">Register</h2>
+                <!--I was trying to edit the "needs validation" field to make all the attributes be required to be inputted-->
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <label for="Fname">Full Name:</label><br>
+                    <!--We can separate the First Name and Last Name if needed-->
+                    <div class="input-group mb-3">
+                        <input formControlName="name" id="Fname" type="text" class="form-control" placeholder="Enter Name" required>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <!--Email Information-->
+                        <label for="email">Email:</label>
+                        <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <!--Password Information-->
+                        <label for="pwd">Password:</label>
+                        <input formControlName="password" type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <!--Password Information-->
+                        <label for="balance">Balance:</label>
+                        <input formControlName="balance" type="number" class="form-control" id="balance" placeholder="Enter Balance" name="balance"
+                            required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btnLogin">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>

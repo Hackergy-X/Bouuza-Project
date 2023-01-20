@@ -1,0 +1,52 @@
+a{
+    text-decoration: none;
+}
+
+.navbar{
+    background-color: #FDE6E4;
+    height: 80px;
+}
+
+
+.btnLogin{
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 3px 10px;
+    transition: all 0.2s ease;
+    color: black;
+}
+
+.btnLogin:hover{
+    background-color: #F27A8C;
+    color: white;
+    border: 1px solid #F27A8C;
+}
+
+.btnRegister{
+    background-color: #F27A8C;
+    color: white;
+    padding: 3px 10px;
+    border: 1px solid #F27A8C;
+}
+
+.btnDrop{
+    background-color: #F27A8C;
+    border: 2px solid #F27A8C;
+    width: 100px;
+}
+
+.btnDrop:hover{
+    background-color: #F27A8C;
+    border: 2px solid #F27A8C;
+}
+
+.btnDrop:active{
+    background-color: #F27A8C;
+    border: 2px solid #F27A8C;
+    color: white;
+}
+
+.btnDrop:focus{
+    background-color: #F27A8C;
+    border: 2px solid #F27A8C;
+}

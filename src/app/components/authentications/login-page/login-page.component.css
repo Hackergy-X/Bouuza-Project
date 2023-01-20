@@ -1,0 +1,105 @@
+.lo1 {
+    background-color: #DFBDC6;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lo2 {
+    width: 90%;
+    height: 550px;
+    background: rgb(210, 149, 167);
+    background: linear-gradient(14deg, rgba(210, 149, 167, 1) 0%, rgba(210, 149, 167, 1) 62%, rgba(249, 203, 213, 1) 99%);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.content {
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.loginTitle {
+    font-size: 40px;
+}
+
+.btnLogin {
+    background-color: #FCD377;
+    color: #452613;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 6px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btnLogin:hover {
+    background-color: #FCDF9D;
+    color: #684F40;
+}
+
+.CreA {
+    text-align: center;
+    color: white;
+    font-weight: 500px;
+}
+
+.CreA span a {
+    color: #684F40;
+}
+
+
+
+@media screen and (max-width: 480px) {
+    .lo2 {
+        flex-direction: column;
+        height: 95%;
+    }
+
+    .logo {
+        width: 100%;
+        height: 50%;
+    }
+
+    .logo img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .content {
+        width: 100%;
+        height: 50%;
+    }
+
+    .loginTitle {
+        font-size: 20px;
+    }
+
+    .btnLogin {
+        margin-bottom: 10px;
+    }
+}

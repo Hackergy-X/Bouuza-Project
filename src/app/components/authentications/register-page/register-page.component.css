@@ -1,0 +1,123 @@
+.lo1 {
+    background-color: #DFBDC6;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lo2 {
+    width: 90%;
+    height: 550px;
+    background: rgb(210, 149, 167);
+    background: linear-gradient(14deg, rgba(210, 149, 167, 1) 0%, rgba(210, 149, 167, 1) 62%, rgba(249, 203, 213, 1) 99%);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.content {
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginTitle {
+    font-size: 40px;
+}
+
+.btnLogin {
+    background-color: #FCD377;
+    color: #452613;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 6px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btnLogin:hover {
+    background-color: #FCDF9D;
+    color: #684F40;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.backDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btnBack {
+    background-color: black;
+    color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 6px;
+    margin-bottom: 60px;
+    border: none;
+    border-radius: 6px;
+    width: 50%;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btnBack:hover {
+    background-color: #212121;
+    color: rgba(255, 255, 255, 0.877);
+}
+
+
+@media screen and (max-width: 480px) {
+    .lo2 {
+        flex-direction: column;
+        height: 95%;
+    }
+
+    .logo {
+        width: 100%;
+        height: 30%;
+    }
+
+    .logo img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .content {
+        width: 100%;
+        height: 70%;
+    }
+
+    .loginTitle {
+        font-size: 20px;
+    }
+
+    .btnLogin {
+        margin-bottom: 10px;
+    }
+}

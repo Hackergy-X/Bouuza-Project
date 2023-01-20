@@ -1,0 +1,80 @@
+<div class="main">
+    <div class="logo">
+        <img src="../../../../assets/loginLogo.png" width="400px" height="400px">
+    </div>
+    <div class="contactForm">
+        <section class="mb-2">
+            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-9 mb-md-0 mb-5">
+                    <form class="formDiv" id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                        <!--Grid row-->
+                        <div class="row">
+
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="md-form mb-0">
+                                    <label for="subject" class="">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-12 mb-4">
+
+                                <div class="md-form">
+                                    <label for="message">Your message</label>
+                                    <textarea type="text" id="message" name="message" rows="2"
+                                        class="form-control md-textarea"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--Grid row-->
+
+
+                        <div class="btnDiv">
+                            <a class="btnSend" onclick="document.getElementById('contact-form').submit();">Send</a>
+                        </div>
+                    </form>
+                    <div class="status"></div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-3 text-center propDiv">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fa fa-map-marker mt-4 fa-2x"></i>
+                            <p>Tripoli, Lebanon</p>
+                        </li>
+
+                        <li><i class="fa fa-phone mt-4 fa-2x"></i>
+                            <p>+961 12345678</p>
+                        </li>
+
+                        <li><i class="fa fa-envelope mt-4 fa-2x"></i>
+                            <p>bouuza@shop.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+            </div>
+
+        </section>
+    </div>
+</div>

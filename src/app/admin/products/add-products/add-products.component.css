@@ -1,0 +1,29 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.form-horizontal{
+    width: 100%;
+    padding-top: 20px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+#singlebutton{
+    width: 100%;
+}
+
+.tit{
+    width: 100%;
+    text-align: center
+}

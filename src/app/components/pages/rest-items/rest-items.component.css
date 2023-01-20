@@ -1,0 +1,195 @@
+.navbar {
+    background-color: #FDE6E4;
+    height: 80px;
+}
+
+
+.btnLogin {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 3px 10px;
+    transition: all 0.2s ease;
+}
+
+.btnLogin:hover {
+    background-color: #F27A8C;
+    color: white;
+    border: 1px solid #F27A8C;
+}
+
+.btnRegister {
+    background-color: #F27A8C;
+    color: white;
+    padding: 3px 10px;
+    border: 1px solid #F27A8C;
+}
+
+
+footer {
+    background-color: #F27A8C;
+}
+
+.products {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 60px;
+}
+
+.pagination {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.page-active {
+    background-color: #F27A8C;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.cardItem {
+    transition: all .2s ease-in-out;
+    margin: 20px;
+}
+
+.cardItem:hover {
+    transform: scale(1.1);
+}
+
+.btnAddToCart {
+    background-color: #F27A8C;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+.btnAddToCart:hover {
+    background-color: #F27A8C;
+    color: white;
+}
+
+.list-items{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mainCard{
+    border: none;
+}
+
+.bodyCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-header{
+    background-color: #fff;
+    border: none;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: #fff !important;
+    color: black;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+    background-color: #F27A8C!important;
+    border: none;
+}
+
+.card-img-top{
+    max-width: 100%;
+    height: 250px;
+}
+
+button{
+    border: none;
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #F27A8C;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+.spinner{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
