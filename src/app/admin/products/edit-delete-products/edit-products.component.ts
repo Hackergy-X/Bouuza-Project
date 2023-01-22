@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router, NavigationEnd } from '@angular/router';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-edit-delete-products',
@@ -17,7 +18,8 @@ export class EditDeleteProductsComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private ngToastService: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -31,7 +33,7 @@ export class EditDeleteProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
         this.authService.getProducts().subscribe((data: any) => {

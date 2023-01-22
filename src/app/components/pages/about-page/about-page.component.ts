@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-about-page',
@@ -9,11 +10,12 @@ import { Router } from '@angular/router';
 export class AboutPageComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
         this.router.navigate(['/admin/dashboard']);

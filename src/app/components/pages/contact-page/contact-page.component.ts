@@ -3,6 +3,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -11,12 +12,13 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class ContactPageComponent implements OnInit {
 
-  userDetail: any = JSON.parse(localStorage.getItem('userDetails'));
+  userDetail: any = this.localService.getJsonValue('userDetails');
 
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private ngToastService: NgToastService
+    private ngToastService: NgToastService,
+    private localService: LocalService
   ) { }
 
   contactForm = new FormGroup({
@@ -26,7 +28,7 @@ export class ContactPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if (user) {
       if (user.isadmin == 1) {
         this.router.navigate(['/admin/dashboard']);
@@ -40,7 +42,7 @@ export class ContactPageComponent implements OnInit {
     }
   }
 
-  addProduct() {
+  addContact() {
     this.authService.addContact(this.contactForm.value).subscribe((data: any) => {
       if (data.success === 1) {
         this.ngToastService.success({ detail: "SUCCESS", summary: data.message, duration: 2000 });

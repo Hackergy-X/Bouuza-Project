@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
 import { NavigationEnd, Router } from '@angular/router';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-order-list',
@@ -19,7 +20,8 @@ export class OrderListComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private toast: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -39,7 +41,7 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    this.userDetails = this.localService.getJsonValue('userDetails');
     this.authService.getOrders().subscribe((data: any) => {
       let ordersF = data.output;
       ordersF == undefined ? ordersF = [] : ordersF.forEach((order: any) => {

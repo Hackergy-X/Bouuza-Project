@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { LocalService } from 'src/app/services/local.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,16 +15,17 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
-        if (localStorage.getItem('userDetails')) {
+        if (this.localService.getJsonValue('userDetails')) {
           this.isLogin = true;
-          this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+          this.userDetails = this.localService.getJsonValue('userDetails');
         }
       }else{
         this.router.navigate(['/home']);
@@ -32,7 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('userDetails');
+    this.localService.clearToken();
     this.isLogin = false;
     this.userDetails = null;
     this.router.navigate(['/home']);

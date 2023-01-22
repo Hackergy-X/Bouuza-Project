@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { LocalService } from 'src/app/services/local.service';
 import { Router } from '@angular/router';
 import * as e from 'express';
 
@@ -12,7 +13,7 @@ import * as e from 'express';
 })
 export class AddProductsComponent implements OnInit {
 
-  userDetails: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+  userDetails: any = this.localService.getJsonValue('userDetails');
 
   ProductDetails = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -26,11 +27,12 @@ export class AddProductsComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private ngToastService: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 0){
         this.router.navigate(['/home']);

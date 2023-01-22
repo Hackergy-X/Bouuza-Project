@@ -3,6 +3,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +13,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class SettingsComponent implements OnInit {
 
   isLogin: boolean = false;
-  userDetails: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+  userDetails: any = this.localService.getJsonValue('userDetails');
 
   userFormDetails = new FormGroup({
     id: new FormControl(this.userDetails.id, Validators.required),
@@ -27,14 +28,15 @@ export class SettingsComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private ngToastService: NgToastService
+    private ngToastService: NgToastService,
+    private localService: LocalService
   ) {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userDetails')) {
+    if (this.localService.getJsonValue('userDetails')) {
       this.isLogin = true;
-      this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+      this.userDetails = this.localService.getJsonValue('userDetails');
     }
   }
 
@@ -43,7 +45,7 @@ export class SettingsComponent implements OnInit {
     let user = this.userFormDetails.value;
     this.authService.editUser(user).subscribe((data: any) => {
       if (data.success === 1) {
-        localStorage.setItem('userDetails', JSON.stringify(user));
+        this.localService.setJsonValue('userDetails', user);
         this.router.navigate(['/home']);
         this.ngToastService.success({ detail: "SUCCESS", summary: 'User updated successfully', duration: 3000 });
       }else{

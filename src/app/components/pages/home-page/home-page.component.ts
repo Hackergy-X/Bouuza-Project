@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,11 +16,12 @@ export class HomePageComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if (user) {
       if (user.isadmin == 1) {
         this.router.navigate(['/admin/dashboard']);
@@ -37,7 +39,7 @@ export class HomePageComponent implements OnInit {
 
 
   readMore() {
-    if (localStorage.getItem('userDetails')) {
+    if (this.localService.getJsonValue('userDetails')) {
       this.router.navigate(['/rest-items']);
     } else {
       this.toast.warning({ detail: "WARNING!", summary: "Should Login before", duration: 2000 });

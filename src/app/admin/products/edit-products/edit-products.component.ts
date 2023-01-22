@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LocalService } from 'src/app/services/local.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 
 
@@ -30,13 +31,14 @@ export class EditProductsComponent implements OnInit {
     private authService: AuthServiceService,
     private route: ActivatedRoute,
     private ngToastService: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) {
 
   }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if (user) {
       if (user.isadmin == 1) {
         this.id = this.route.snapshot.paramMap.get('id');

@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { LocalService } from 'src/app/services/local.service';
+
 
 
 @Injectable({
@@ -18,7 +20,8 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient,
     private router: Router,
-    private ngToastService: NgToastService
+    private ngToastService: NgToastService,
+    private localService: LocalService
   ) { }
 
   getUsers(email: string, password: string) {
@@ -28,20 +31,20 @@ export class AuthServiceService {
       this.users.forEach((user: any) => {
         if (user.email === email && user.password === password) {
           if (user.isadmin == 1) {
-            localStorage.setItem('userDetails', JSON.stringify(user));
+            this.localService.setJsonValue('userDetails', user);
             this.isFinded = true;
-            this.ngToastService.success({detail:"SUCCESS",summary:'login successfully',duration:5000});
+            this.ngToastService.success({ detail: "SUCCESS", summary: 'login successfully', duration: 5000 });
             this.router.navigate(['/admin']);
           } else {
-            localStorage.setItem('userDetails', JSON.stringify(user));
+            this.localService.setJsonValue('userDetails', user);
             this.isFinded = true;
-            this.ngToastService.success({detail:"SUCCESS",summary:'login successfully',duration:5000});
+            this.ngToastService.success({ detail: "SUCCESS", summary: 'login successfully', duration: 5000 });
             this.router.navigate(['/home']);
           }
         }
       });
       if (!this.isFinded) {
-        this.ngToastService.error({detail:"ERROR",summary:'Invalid email or password !!',duration:3000});
+        this.ngToastService.error({ detail: "ERROR", summary: 'Invalid email or password !!', duration: 3000 });
       }
     }
     );
@@ -51,15 +54,16 @@ export class AuthServiceService {
   createUser(user: any) {
     let getRegisterUser = this.http.post(this.baseUrl + 'user_insert.php', user);
     getRegisterUser.subscribe((data: any) => {
-      localStorage.setItem('userDetails', JSON.stringify(user));
-      this.ngToastService.success({detail:"SUCCESS",summary:'User created successfully',duration:5000});
-      this.router.navigate(['/home']);
-    }, (error: any) => {
-      this.ngToastService.error({detail:"ERROR",summary:error.error,duration:5000});
+      if (data.success == 1) {
+        this.localService.setJsonValue('userDetails', user);
+        this.ngToastService.success({ detail: "SUCCESS", summary: 'User created successfully', duration: 5000 });
+        this.router.navigate(['/home']);
+      }else{
+        this.ngToastService.error({detail:"ERROR",summary:data.message,duration:5000});
+      }
     });
   }
-
-  getProducts(){
+  getProducts() {
     return this.http.get<any>(this.baseUrl + 'product_view.php');
   }
 
@@ -67,7 +71,7 @@ export class AuthServiceService {
     return this.http.get<any>(this.baseUrl + `product_view.php?id=${id}`);
   }
 
-  getUsersList(){
+  getUsersList() {
     return this.http.get<any>(this.baseUrl + 'user_view.php');
   }
 
@@ -75,39 +79,39 @@ export class AuthServiceService {
     return this.http.put(this.baseUrl + 'user_update.php', user);
   }
 
-  addOrder(order: any){
+  addOrder(order: any) {
     return this.http.post(this.baseUrl + 'order_insert.php', order);
   }
 
-  getOrders(){
+  getOrders() {
     return this.http.get<any>(this.baseUrl + 'order_view.php');
   }
 
-  removeOrder(id: any){
+  removeOrder(id: any) {
     return this.http.delete(this.baseUrl + 'order_delete.php?id=' + id);
   }
 
-  addProduct(product: any){
+  addProduct(product: any) {
     return this.http.post(this.baseUrl + 'product_insert.php', product);
   }
 
-  editProduct(product: any){
+  editProduct(product: any) {
     return this.http.put(this.baseUrl + 'product_update.php', product);
   }
 
-  deleteProduct(id: any){
+  deleteProduct(id: any) {
     return this.http.delete(this.baseUrl + 'product_delete.php?id=' + id);
   }
 
-  addContact(contact: any){
+  addContact(contact: any) {
     return this.http.post(this.baseUrl + 'contact_insert.php', contact);
   }
 
-  getContacts(){
+  getContacts() {
     return this.http.get<any>(this.baseUrl + 'contact_view.php');
   }
 
-  deleteContact(id: any){
+  deleteContact(id: any) {
     return this.http.delete(this.baseUrl + 'contact_delete.php?id=' + id);
   }
 

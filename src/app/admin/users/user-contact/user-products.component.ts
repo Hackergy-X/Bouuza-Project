@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { LocalService } from 'src/app/services/local.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 
@@ -15,11 +16,12 @@ export class UserContactComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private toast: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
         this.authService.getContacts().subscribe((data: any) => {

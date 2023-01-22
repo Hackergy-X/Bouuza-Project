@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
+import { LocalService } from 'src/app/services/local.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -21,11 +22,12 @@ export class AdminProductsComponent implements OnInit {
     private httpClient: HttpClient,
     private authService: AuthServiceService,
     private toast: NgToastService,
-    private router: Router
+    private router: Router,
+    private localService: LocalService
   ) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
         this.loadProducts();
@@ -64,7 +66,7 @@ export class AdminProductsComponent implements OnInit {
     let category = product.category;
     let image = product.image;
 
-    let uid = JSON.parse(localStorage.getItem('userDetails')).id;
+    let uid = this.localService.getJsonValue('userDetails').id;
 
     let order = {
       name: name,

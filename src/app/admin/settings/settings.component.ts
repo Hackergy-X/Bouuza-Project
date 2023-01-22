@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LocalService } from 'src/app/services/local.service';
+import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 
 
@@ -13,7 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class SettingsComponent implements OnInit {
 
   isLogin: boolean = false;
-  userDetails: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+  userDetails: any = this.localService.getJsonValue('userDetails');
 
   userForm = new FormGroup({
     id: new FormControl(this.userDetails.id, Validators.required),
@@ -27,19 +28,18 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private authService: AuthServiceService,
-    private router: Router,
-    private ngToastService: NgToastService
+    private ngToastService: NgToastService,
+    private localService: LocalService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
+    let user = this.localService.getJsonValue('userDetails');
     if(user){
       if(user.isadmin == 1){
-        if (localStorage.getItem('userDetails')) {
           this.isLogin = true;
-          this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
-        }
+          this.userDetails = this.localService.getJsonValue('userDetails');
       }else{
         this.router.navigate(['/home']);
         }
@@ -48,7 +48,7 @@ export class SettingsComponent implements OnInit {
 
 
   logout() {
-    localStorage.removeItem('userDetails');
+    this.localService.clearToken();
     this.isLogin = false;
     this.userDetails = null;
     this.router.navigate(['/login']);
@@ -59,7 +59,7 @@ export class SettingsComponent implements OnInit {
     let user = this.userForm.value;
     this.authService.editUser(user).subscribe((data: any) => {
       if (data.success === 1) {
-        localStorage.setItem('userDetails', JSON.stringify(user));
+        this.localService.setJsonValue('userDetails', user);
         this.router.navigate(['/admin/dashboard']);
         this.ngToastService.success({ detail: "SUCCESS", summary: 'User updated successfully', duration: 3000 });
       }else{
