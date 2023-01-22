@@ -19,16 +19,27 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.getProducts().subscribe((data: any) => {
-      this.products = data.output;
-    });
+    let user = JSON.parse(localStorage.getItem('userDetails'));
+    if (user) {
+      if (user.isadmin == 1) {
+        this.router.navigate(['/admin/dashboard']);
+      } else {
+        this.authService.getProducts().subscribe((data: any) => {
+          this.products = data.output;
+        });
+      }
+    }else{
+      this.authService.getProducts().subscribe((data: any) => {
+        this.products = data.output;
+      });
+    }
   }
 
 
-  readMore(){
-    if(localStorage.getItem('userDetails')){
+  readMore() {
+    if (localStorage.getItem('userDetails')) {
       this.router.navigate(['/rest-items']);
-    }else{
+    } else {
       this.toast.warning({ detail: "WARNING!", summary: "Should Login before", duration: 2000 });
       this.router.navigate(['/login']);
     }

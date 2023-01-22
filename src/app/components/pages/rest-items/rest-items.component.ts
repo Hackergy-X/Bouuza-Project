@@ -28,33 +28,40 @@ export class RestItemsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+    let user = JSON.parse(localStorage.getItem('userDetails'));
+    if (user) {
+      if (user.isadmin == 1) {
+        this.router.navigate(['/admin/dashboard']);
+      } else {
+        this.loadProducts();
+      }
+    }
   }
 
-  refreshProducts(){
+  refreshProducts() {
     this.products = JSON.parse(localStorage.getItem('ProductsList'))
-    .map((product, i) => ({id: i + 1, ...product}))
-    .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+      .map((product, i) => ({ id: i + 1, ...product }))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
-  loadProducts(){
-    this.getProducts().subscribe( (x) => {
-        this.products = x;
-        localStorage.setItem('ProductsList', JSON.stringify(x));
-        this.refreshProducts(); // Display the first page
-        this.isLoading = false;
+  loadProducts() {
+    this.getProducts().subscribe((x) => {
+      this.products = x;
+      localStorage.setItem('ProductsList', JSON.stringify(x));
+      this.refreshProducts(); // Display the first page
+      this.isLoading = false;
     })
   }
 
-  getProducts(): any{
+  getProducts(): any {
     return this.httpClient.get<any>('http://localhost:8080/bouuza/product_view.php').pipe(
-      map((response:any) => {
+      map((response: any) => {
         return response.output;
       })
     );
   }
 
-  orderNow(product: any){
+  orderNow(product: any) {
     let name = product.name;
     let price = product.price;
     let description = product.description;
@@ -73,13 +80,13 @@ export class RestItemsComponent implements OnInit {
     }
 
     this.authService.addOrder(order).subscribe((x) => {
-        if(x['success'] === 1){
-          this.toast.success({detail:"SUCCESS",summary:'Product is Orded successfully!!',duration:2000});
-          this.router.navigate(['/order-list']);
-        }else{
-          this.toast.error({detail:"ERROR",summary:'Please Try Again later',duration:2000});
-        }
+      if (x['success'] === 1) {
+        this.toast.success({ detail: "SUCCESS", summary: 'Product is Orded successfully!!', duration: 2000 });
+        this.router.navigate(['/order-list']);
+      } else {
+        this.toast.error({ detail: "ERROR", summary: 'Please Try Again later', duration: 2000 });
+      }
     });
   }
-    
-  }
+
+}

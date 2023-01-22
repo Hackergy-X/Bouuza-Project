@@ -24,7 +24,7 @@ import { FormsComponent } from './admin/forms/forms.component';
 import { ModalsComponent } from './admin/modals/modals.component';
 import { UserPagesComponent } from './components/pages/user-pages/user-pages.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { UserProductsComponent } from './admin/users/user-products/user-products.component';
+import { UserContactComponent } from './admin/users/user-contact/user-products.component';
 import { UserCommentsComponent } from './admin/users/user-comments/user-comments.component';
 import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { EditDeleteProductsComponent } from './admin/products/edit-delete-products/edit-products.component';
@@ -34,6 +34,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderAdminOrderComponent } from './admin/order-admin-order/order-admin-order.component';
+import { SettingsComponent as UserSettings } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { OrderAdminOrderComponent } from './admin/order-admin-order/order-admin-
     ModalsComponent,
     UserPagesComponent,
     AdminDashboardComponent,
-    UserProductsComponent,
+    UserContactComponent,
     UserCommentsComponent,
     AddProductsComponent,
     EditDeleteProductsComponent,
@@ -62,7 +63,8 @@ import { OrderAdminOrderComponent } from './admin/order-admin-order/order-admin-
     AdminProductsComponent,
     OrdersComponent,
     OrderListComponent,
-    OrderAdminOrderComponent
+    OrderAdminOrderComponent,
+    UserSettings
   ],
   imports: [
     BrowserModule,

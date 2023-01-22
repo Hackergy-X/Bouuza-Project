@@ -25,7 +25,14 @@ export class AdminProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+    let user = JSON.parse(localStorage.getItem('userDetails'));
+    if(user){
+      if(user.isadmin == 1){
+        this.loadProducts();
+      }else{
+        this.router.navigate(['/home']);
+        }
+      }
   }
 
   refreshProducts() {

@@ -13,3 +13,9 @@
     width: 100%;
     text-align: center
 }
+
+.btn-primary{
+    background: black;
+    color: white;
+    border: 1px solid black;
+}

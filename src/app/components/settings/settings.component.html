@@ -1,0 +1,35 @@
+<div class="row m-5">
+    <div class="col-12 col-xl-12">
+        <div class="card card-body border-0 shadow mb-4">
+            <h2 class="h5 mb-4">General information</h2>
+            <form [formGroup]="userFormDetails" (ngSubmit)="updateUser()">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div><label for="first_name">Full Name</label> <input class="form-control" id="first_name"
+                                type="text" placeholder="Enter your full name" required formControlName="name"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-3">
+                        <label for="birthday">Email</label>
+                        <div><input class="form-control" id="first_name" type="text" placeholder="Enter your email"
+                                required formControlName="email"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="gender">Password</label>
+                        <div><input class="form-control" id="first_name" type="text" placeholder="Enter your password"
+                                required formControlName="password"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div><label for="first_name">Balance</label> <input class="form-control" id="first_name"
+                                type="text" placeholder="Enter your full name" required formControlName="balance"></div>
+                    </div>
+                </div>
+                <div class="mt-3"><button class="btn btn-gray-800 mt-2 animate-up-2  col-12" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

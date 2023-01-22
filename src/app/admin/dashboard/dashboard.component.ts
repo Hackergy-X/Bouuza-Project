@@ -18,10 +18,17 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userDetails')) {
-      this.isLogin = true;
-      this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    }
+    let user = JSON.parse(localStorage.getItem('userDetails'));
+    if(user){
+      if(user.isadmin == 1){
+        if (localStorage.getItem('userDetails')) {
+          this.isLogin = true;
+          this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+        }
+      }else{
+        this.router.navigate(['/home']);
+        }
+      }
   }
 
   logout() {

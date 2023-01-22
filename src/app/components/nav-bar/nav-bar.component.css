@@ -32,7 +32,7 @@ a{
 .btnDrop{
     background-color: #F27A8C;
     border: 2px solid #F27A8C;
-    width: 100px;
+    width: 100%;
 }
 
 .btnDrop:hover{

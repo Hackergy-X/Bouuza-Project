@@ -1,14 +1,15 @@
 <div class="main">
     <h2 class="bg-white rounded shadow p-3 mb-4 mt-4 tit">Add Products</h2>
     <hr>
-    <form class="form-horizontal">
+    <form class="form-horizontal" [formGroup]="ProductDetails" (ngSubmit)="addProduct()">
         <fieldset>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
                 <div class="col-md-4">
                     <input id="product_name" name="product_name" placeholder="PRODUCT NAME"
-                        class="form-control input-md" required="" type="text">
+                        formControlName="name"    
+                    class="form-control input-md" required="" type="text">
                 </div>
             </div>
             <!-- Text input-->
@@ -16,7 +17,8 @@
                 <label class="col-md-4 control-label" for="product_name">PRODUCT Category</label>
                 <div class="col-md-4">
                     <input id="product_name" name="product_name" placeholder="PRODUCT Category"
-                        class="form-control input-md" required="" type="text">
+                    formControlName="category"    
+                    class="form-control input-md" required="" type="text">
                 </div>
             </div>
             <!-- Text input-->
@@ -24,7 +26,8 @@
                 <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION</label>
                 <div class="col-md-4">
                     <input id="product_name_fr" name="product_name_fr" placeholder="PRODUCT DESCRIPTION"
-                        class="form-control input-md" required="" type="text">
+                    formControlName="description"
+                    class="form-control input-md" required="" type="text">
                 </div>
             </div>
             <!-- Text input-->
@@ -32,7 +35,8 @@
                 <label class="col-md-4 control-label" for="product_weight">PRODUCT PRICE</label>
                 <div class="col-md-4">
                     <input id="product_weight" name="product_weight" placeholder="PRODUCT PRICE"
-                        class="form-control input-md" required="" type="text">
+                    formControlName="price"
+                    class="form-control input-md" required="" type="text">
                 </div>
             </div>
             <!-- Textarea -->
@@ -41,13 +45,14 @@
                 <div class="col-md-4">
                     <textarea
                     placeholder="Image Link..."
+                    formControlName="image"
                     class="form-control" id="product_description" name="product_description"></textarea>
                 </div>
             </div>
             <!-- Button -->
             <div class="form-group">
-                <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Add</button>
+                <div class="col-md-9 mt-3">
+                    <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </fieldset>

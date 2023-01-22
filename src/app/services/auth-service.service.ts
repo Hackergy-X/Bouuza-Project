@@ -47,9 +47,6 @@ export class AuthServiceService {
     );
   }
 
-  getSingleContact(id: any) {
-    return this.http.get<any>(this.baseUrl + 'view.php?id=' + id);
-  }
 
   createUser(user: any) {
     let getRegisterUser = this.http.post(this.baseUrl + 'user_insert.php', user);
@@ -89,5 +86,30 @@ export class AuthServiceService {
   removeOrder(id: any){
     return this.http.delete(this.baseUrl + 'order_delete.php?id=' + id);
   }
+
+  addProduct(product: any){
+    return this.http.post(this.baseUrl + 'product_insert.php', product);
+  }
+
+  editProduct(product: any){
+    return this.http.put(this.baseUrl + 'product_update.php', product);
+  }
+
+  deleteProduct(id: any){
+    return this.http.delete(this.baseUrl + 'product_delete.php?id=' + id);
+  }
+
+  addContact(contact: any){
+    return this.http.post(this.baseUrl + 'contact_insert.php', contact);
+  }
+
+  getContacts(){
+    return this.http.get<any>(this.baseUrl + 'contact_view.php');
+  }
+
+  deleteContact(id: any){
+    return this.http.delete(this.baseUrl + 'contact_delete.php?id=' + id);
+  }
+
 
 }

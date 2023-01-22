@@ -23,7 +23,7 @@
                {{ userDetails?.name }}
             </button>
             <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-               <li><a ngbDropdownItem href="#">Profile</a></li>
+               <li><a ngbDropdownItem routerLink="/admin/settings">Profile</a></li>
                <li><a ngbDropdownItem (click)="logout()">Logout</a></li>
             </ul>
          </div>

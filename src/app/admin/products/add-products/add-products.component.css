@@ -27,3 +27,8 @@
     width: 100%;
     text-align: center
 }
+
+.btn{
+    background: black;
+    color: white;
+}

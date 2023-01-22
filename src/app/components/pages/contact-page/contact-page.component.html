@@ -10,21 +10,16 @@
 
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                    <form class="formDiv" id="contact-form" name="contact-form" action="mail.php" method="POST">
-
-                        <!--Grid row-->
-                        <div class="row">
-
-
-                        </div>
-                        <!--Grid row-->
+                    <form [formGroup]="contactForm" (ngSubmit)="addProduct()">
 
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-md-12 mb-4">
                                 <div class="md-form mb-0">
                                     <label for="subject" class="">Subject</label>
-                                    <input type="text" id="subject" name="subject" class="form-control">
+                                    <input type="text" id="subject" name="subject" class="form-control"
+                                    formControlName="subject"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -39,7 +34,9 @@
                                 <div class="md-form">
                                     <label for="message">Your message</label>
                                     <textarea type="text" id="message" name="message" rows="2"
-                                        class="form-control md-textarea"></textarea>
+                                        class="form-control md-textarea"
+                                        formControlName="message"
+                                        ></textarea>
                                 </div>
 
                             </div>
@@ -48,7 +45,7 @@
 
 
                         <div class="btnDiv">
-                            <a class="btnSend" onclick="document.getElementById('contact-form').submit();">Send</a>
+                            <button class="btnSend" type="submit">Send</button>
                         </div>
                     </form>
                     <div class="status"></div>

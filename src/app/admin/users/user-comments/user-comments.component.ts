@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-comments',
@@ -13,13 +14,21 @@ export class UserCommentsComponent implements OnInit {
 
   constructor(
     private authService: AuthServiceService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.authService.getUsersList().subscribe((data: any) => {
-      this.users = data.output;
-    });
+    let user = JSON.parse(localStorage.getItem('userDetails'));
+    if(user){
+      if(user.isadmin == 1){
+        this.authService.getUsersList().subscribe((data: any) => {
+          this.users = data.output;
+        });
+      }else{
+        this.router.navigate(['/home']);
+        }
+      }
   }
 
   makeAsAdmin(user: any) {

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -15,7 +14,7 @@ export class SettingsComponent implements OnInit {
   isLogin: boolean = false;
   userDetails: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
-  userForm = new FormGroup({
+  userFormDetails = new FormGroup({
     id: new FormControl(this.userDetails.id, Validators.required),
     name: new FormControl(this.userDetails.name, Validators.required),
     email: new FormControl(this.userDetails.email, Validators.required),
@@ -33,40 +32,24 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('userDetails'));
-    if(user){
-      if(user.isadmin == 1){
-        if (localStorage.getItem('userDetails')) {
-          this.isLogin = true;
-          this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
-        }
-      }else{
-        this.router.navigate(['/home']);
-        }
-      }
-  }
-
-
-  logout() {
-    localStorage.removeItem('userDetails');
-    this.isLogin = false;
-    this.userDetails = null;
-    this.router.navigate(['/login']);
+    if (localStorage.getItem('userDetails')) {
+      this.isLogin = true;
+      this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    }
   }
 
 
   updateUser() {
-    let user = this.userForm.value;
+    let user = this.userFormDetails.value;
     this.authService.editUser(user).subscribe((data: any) => {
       if (data.success === 1) {
         localStorage.setItem('userDetails', JSON.stringify(user));
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/home']);
         this.ngToastService.success({ detail: "SUCCESS", summary: 'User updated successfully', duration: 3000 });
       }else{
         this.ngToastService.error({ detail: "ERROR", summary: data.message, duration: 3000 });
       }
     });
   }
-
 
 }
